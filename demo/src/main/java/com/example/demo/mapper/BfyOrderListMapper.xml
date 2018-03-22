@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.BfyOrderListMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.BfyOrderList">
+    <id column="BFY_ORDER_LIST_ID" jdbcType="INTEGER" property="bfyOrderListId" />
+    <result column="BFY_ORDER_ID" jdbcType="INTEGER" property="bfyOrderId" />
+    <result column="BFY_ORDER_RECEIVE_INFO_ID" jdbcType="INTEGER" property="bfyOrderReceiveInfoId" />
+    <result column="BFY_ORDER_RECEIVER" jdbcType="VARCHAR" property="bfyOrderReceiver" />
+    <result column="BFY_ORDER_COUNT" jdbcType="INTEGER" property="bfyOrderCount" />
+    <result column="BFY_ORDER_MONEY" jdbcType="DOUBLE" property="bfyOrderMoney" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BFY_ORDER_LIST_ID, BFY_ORDER_ID, BFY_ORDER_RECEIVE_INFO_ID, BFY_ORDER_RECEIVER, BFY_ORDER_COUNT, 
+    BFY_ORDER_MONEY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bfy_order_list
+    where BFY_ORDER_LIST_ID = #{bfyOrderListId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bfy_order_list
+    where BFY_ORDER_LIST_ID = #{bfyOrderListId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.BfyOrderList">
+    insert into bfy_order_list (BFY_ORDER_LIST_ID, BFY_ORDER_ID, BFY_ORDER_RECEIVE_INFO_ID, 
+      BFY_ORDER_RECEIVER, BFY_ORDER_COUNT, BFY_ORDER_MONEY
+      )
+    values (#{bfyOrderListId,jdbcType=INTEGER}, #{bfyOrderId,jdbcType=INTEGER}, #{bfyOrderReceiveInfoId,jdbcType=INTEGER}, 
+      #{bfyOrderReceiver,jdbcType=VARCHAR}, #{bfyOrderCount,jdbcType=INTEGER}, #{bfyOrderMoney,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.BfyOrderList">
+    insert into bfy_order_list
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bfyOrderListId != null">
+        BFY_ORDER_LIST_ID,
+      </if>
+      <if test="bfyOrderId != null">
+        BFY_ORDER_ID,
+      </if>
+      <if test="bfyOrderReceiveInfoId != null">
+        BFY_ORDER_RECEIVE_INFO_ID,
+      </if>
+      <if test="bfyOrderReceiver != null">
+        BFY_ORDER_RECEIVER,
+      </if>
+      <if test="bfyOrderCount != null">
+        BFY_ORDER_COUNT,
+      </if>
+      <if test="bfyOrderMoney != null">
+        BFY_ORDER_MONEY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bfyOrderListId != null">
+        #{bfyOrderListId,jdbcType=INTEGER},
+      </if>
+      <if test="bfyOrderId != null">
+        #{bfyOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="bfyOrderReceiveInfoId != null">
+        #{bfyOrderReceiveInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="bfyOrderReceiver != null">
+        #{bfyOrderReceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="bfyOrderCount != null">
+        #{bfyOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="bfyOrderMoney != null">
+        #{bfyOrderMoney,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.BfyOrderList">
+    update bfy_order_list
+    <set>
+      <if test="bfyOrderId != null">
+        BFY_ORDER_ID = #{bfyOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="bfyOrderReceiveInfoId != null">
+        BFY_ORDER_RECEIVE_INFO_ID = #{bfyOrderReceiveInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="bfyOrderReceiver != null">
+        BFY_ORDER_RECEIVER = #{bfyOrderReceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="bfyOrderCount != null">
+        BFY_ORDER_COUNT = #{bfyOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="bfyOrderMoney != null">
+        BFY_ORDER_MONEY = #{bfyOrderMoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where BFY_ORDER_LIST_ID = #{bfyOrderListId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.BfyOrderList">
+    update bfy_order_list
+    set BFY_ORDER_ID = #{bfyOrderId,jdbcType=INTEGER},
+      BFY_ORDER_RECEIVE_INFO_ID = #{bfyOrderReceiveInfoId,jdbcType=INTEGER},
+      BFY_ORDER_RECEIVER = #{bfyOrderReceiver,jdbcType=VARCHAR},
+      BFY_ORDER_COUNT = #{bfyOrderCount,jdbcType=INTEGER},
+      BFY_ORDER_MONEY = #{bfyOrderMoney,jdbcType=DOUBLE}
+    where BFY_ORDER_LIST_ID = #{bfyOrderListId,jdbcType=INTEGER}
+  </update>
+</mapper>

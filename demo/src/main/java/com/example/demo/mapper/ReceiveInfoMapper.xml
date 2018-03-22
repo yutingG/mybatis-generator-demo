@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.ReceiveInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.ReceiveInfo">
+    <id column="RECEIVE_INFO_ID" jdbcType="INTEGER" property="receiveInfoId" />
+    <result column="RECEIVE_NAME" jdbcType="VARCHAR" property="receiveName" />
+    <result column="RECEIVE_PHONE" jdbcType="VARCHAR" property="receivePhone" />
+    <result column="RECEIVE_ADDRESS" jdbcType="VARCHAR" property="receiveAddress" />
+    <result column="RECEIVE_USER_ID" jdbcType="INTEGER" property="receiveUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RECEIVE_INFO_ID, RECEIVE_NAME, RECEIVE_PHONE, RECEIVE_ADDRESS, RECEIVE_USER_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from receive_info
+    where RECEIVE_INFO_ID = #{receiveInfoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from receive_info
+    where RECEIVE_INFO_ID = #{receiveInfoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.ReceiveInfo">
+    insert into receive_info (RECEIVE_INFO_ID, RECEIVE_NAME, RECEIVE_PHONE, 
+      RECEIVE_ADDRESS, RECEIVE_USER_ID)
+    values (#{receiveInfoId,jdbcType=INTEGER}, #{receiveName,jdbcType=VARCHAR}, #{receivePhone,jdbcType=VARCHAR}, 
+      #{receiveAddress,jdbcType=VARCHAR}, #{receiveUserId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.ReceiveInfo">
+    insert into receive_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="receiveInfoId != null">
+        RECEIVE_INFO_ID,
+      </if>
+      <if test="receiveName != null">
+        RECEIVE_NAME,
+      </if>
+      <if test="receivePhone != null">
+        RECEIVE_PHONE,
+      </if>
+      <if test="receiveAddress != null">
+        RECEIVE_ADDRESS,
+      </if>
+      <if test="receiveUserId != null">
+        RECEIVE_USER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="receiveInfoId != null">
+        #{receiveInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="receiveName != null">
+        #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePhone != null">
+        #{receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAddress != null">
+        #{receiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUserId != null">
+        #{receiveUserId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.ReceiveInfo">
+    update receive_info
+    <set>
+      <if test="receiveName != null">
+        RECEIVE_NAME = #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePhone != null">
+        RECEIVE_PHONE = #{receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAddress != null">
+        RECEIVE_ADDRESS = #{receiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveUserId != null">
+        RECEIVE_USER_ID = #{receiveUserId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where RECEIVE_INFO_ID = #{receiveInfoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.ReceiveInfo">
+    update receive_info
+    set RECEIVE_NAME = #{receiveName,jdbcType=VARCHAR},
+      RECEIVE_PHONE = #{receivePhone,jdbcType=VARCHAR},
+      RECEIVE_ADDRESS = #{receiveAddress,jdbcType=VARCHAR},
+      RECEIVE_USER_ID = #{receiveUserId,jdbcType=INTEGER}
+    where RECEIVE_INFO_ID = #{receiveInfoId,jdbcType=INTEGER}
+  </update>
+</mapper>

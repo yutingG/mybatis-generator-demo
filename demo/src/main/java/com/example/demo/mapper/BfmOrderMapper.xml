@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.BfmOrderMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.BfmOrder">
+    <id column="BFM_ORDER_ID" jdbcType="INTEGER" property="bfmOrderId" />
+    <result column="BFM_ORDER_DES" jdbcType="VARCHAR" property="bfmOrderDes" />
+    <result column="BFM_ORDER_CREATOR" jdbcType="VARCHAR" property="bfmOrderCreator" />
+    <result column="BFM_ORDER_CREATE_TIME" jdbcType="TIMESTAMP" property="bfmOrderCreateTime" />
+    <result column="BFM_ORDER_MONEY" jdbcType="DOUBLE" property="bfmOrderMoney" />
+    <result column="BFM_ORDER_RECEIVE_INFO_ID" jdbcType="INTEGER" property="bfmOrderReceiveInfoId" />
+    <result column="BFM_ORDER_TRADE_TIME" jdbcType="TIMESTAMP" property="bfmOrderTradeTime" />
+    <result column="BFM_ORDER_TYPE" jdbcType="VARCHAR" property="bfmOrderType" />
+    <result column="BFM_ORDER_GOODS" jdbcType="VARCHAR" property="bfmOrderGoods" />
+    <result column="BFM_ORDER_SHOP_NAME" jdbcType="VARCHAR" property="bfmOrderShopName" />
+    <result column="BFM_ORDER_STATUS" jdbcType="VARCHAR" property="bfmOrderStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BFM_ORDER_ID, BFM_ORDER_DES, BFM_ORDER_CREATOR, BFM_ORDER_CREATE_TIME, BFM_ORDER_MONEY, 
+    BFM_ORDER_RECEIVE_INFO_ID, BFM_ORDER_TRADE_TIME, BFM_ORDER_TYPE, BFM_ORDER_GOODS, 
+    BFM_ORDER_SHOP_NAME, BFM_ORDER_STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bfm_order
+    where BFM_ORDER_ID = #{bfmOrderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bfm_order
+    where BFM_ORDER_ID = #{bfmOrderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.BfmOrder">
+    insert into bfm_order (BFM_ORDER_ID, BFM_ORDER_DES, BFM_ORDER_CREATOR, 
+      BFM_ORDER_CREATE_TIME, BFM_ORDER_MONEY, BFM_ORDER_RECEIVE_INFO_ID, 
+      BFM_ORDER_TRADE_TIME, BFM_ORDER_TYPE, BFM_ORDER_GOODS, 
+      BFM_ORDER_SHOP_NAME, BFM_ORDER_STATUS)
+    values (#{bfmOrderId,jdbcType=INTEGER}, #{bfmOrderDes,jdbcType=VARCHAR}, #{bfmOrderCreator,jdbcType=VARCHAR}, 
+      #{bfmOrderCreateTime,jdbcType=TIMESTAMP}, #{bfmOrderMoney,jdbcType=DOUBLE}, #{bfmOrderReceiveInfoId,jdbcType=INTEGER}, 
+      #{bfmOrderTradeTime,jdbcType=TIMESTAMP}, #{bfmOrderType,jdbcType=VARCHAR}, #{bfmOrderGoods,jdbcType=VARCHAR}, 
+      #{bfmOrderShopName,jdbcType=VARCHAR}, #{bfmOrderStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.BfmOrder">
+    insert into bfm_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bfmOrderId != null">
+        BFM_ORDER_ID,
+      </if>
+      <if test="bfmOrderDes != null">
+        BFM_ORDER_DES,
+      </if>
+      <if test="bfmOrderCreator != null">
+        BFM_ORDER_CREATOR,
+      </if>
+      <if test="bfmOrderCreateTime != null">
+        BFM_ORDER_CREATE_TIME,
+      </if>
+      <if test="bfmOrderMoney != null">
+        BFM_ORDER_MONEY,
+      </if>
+      <if test="bfmOrderReceiveInfoId != null">
+        BFM_ORDER_RECEIVE_INFO_ID,
+      </if>
+      <if test="bfmOrderTradeTime != null">
+        BFM_ORDER_TRADE_TIME,
+      </if>
+      <if test="bfmOrderType != null">
+        BFM_ORDER_TYPE,
+      </if>
+      <if test="bfmOrderGoods != null">
+        BFM_ORDER_GOODS,
+      </if>
+      <if test="bfmOrderShopName != null">
+        BFM_ORDER_SHOP_NAME,
+      </if>
+      <if test="bfmOrderStatus != null">
+        BFM_ORDER_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bfmOrderId != null">
+        #{bfmOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="bfmOrderDes != null">
+        #{bfmOrderDes,jdbcType=VARCHAR},
+      </if>
+      <if test="bfmOrderCreator != null">
+        #{bfmOrderCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="bfmOrderCreateTime != null">
+        #{bfmOrderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bfmOrderMoney != null">
+        #{bfmOrderMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="bfmOrderReceiveInfoId != null">
+        #{bfmOrderReceiveInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="bfmOrderTradeTime != null">
+        #{bfmOrderTradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bfmOrderType != null">
+        #{bfmOrderType,jdbcType=VARCHAR},
+      </if>
+      <if test="bfmOrderGoods != null">
+        #{bfmOrderGoods,jdbcType=VARCHAR},
+      </if>
+      <if test="bfmOrderShopName != null">
+        #{bfmOrderShopName,jdbcType=VARCHAR},
+      </if>
+      <if test="bfmOrderStatus != null">
+        #{bfmOrderStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.BfmOrder">
+    update bfm_order
+    <set>
+      <if test="bfmOrderDes != null">
+        BFM_ORDER_DES = #{bfmOrderDes,jdbcType=VARCHAR},
+      </if>
+      <if test="bfmOrderCreator != null">
+        BFM_ORDER_CREATOR = #{bfmOrderCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="bfmOrderCreateTime != null">
+        BFM_ORDER_CREATE_TIME = #{bfmOrderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bfmOrderMoney != null">
+        BFM_ORDER_MONEY = #{bfmOrderMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="bfmOrderReceiveInfoId != null">
+        BFM_ORDER_RECEIVE_INFO_ID = #{bfmOrderReceiveInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="bfmOrderTradeTime != null">
+        BFM_ORDER_TRADE_TIME = #{bfmOrderTradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bfmOrderType != null">
+        BFM_ORDER_TYPE = #{bfmOrderType,jdbcType=VARCHAR},
+      </if>
+      <if test="bfmOrderGoods != null">
+        BFM_ORDER_GOODS = #{bfmOrderGoods,jdbcType=VARCHAR},
+      </if>
+      <if test="bfmOrderShopName != null">
+        BFM_ORDER_SHOP_NAME = #{bfmOrderShopName,jdbcType=VARCHAR},
+      </if>
+      <if test="bfmOrderStatus != null">
+        BFM_ORDER_STATUS = #{bfmOrderStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BFM_ORDER_ID = #{bfmOrderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.BfmOrder">
+    update bfm_order
+    set BFM_ORDER_DES = #{bfmOrderDes,jdbcType=VARCHAR},
+      BFM_ORDER_CREATOR = #{bfmOrderCreator,jdbcType=VARCHAR},
+      BFM_ORDER_CREATE_TIME = #{bfmOrderCreateTime,jdbcType=TIMESTAMP},
+      BFM_ORDER_MONEY = #{bfmOrderMoney,jdbcType=DOUBLE},
+      BFM_ORDER_RECEIVE_INFO_ID = #{bfmOrderReceiveInfoId,jdbcType=INTEGER},
+      BFM_ORDER_TRADE_TIME = #{bfmOrderTradeTime,jdbcType=TIMESTAMP},
+      BFM_ORDER_TYPE = #{bfmOrderType,jdbcType=VARCHAR},
+      BFM_ORDER_GOODS = #{bfmOrderGoods,jdbcType=VARCHAR},
+      BFM_ORDER_SHOP_NAME = #{bfmOrderShopName,jdbcType=VARCHAR},
+      BFM_ORDER_STATUS = #{bfmOrderStatus,jdbcType=VARCHAR}
+    where BFM_ORDER_ID = #{bfmOrderId,jdbcType=INTEGER}
+  </update>
+</mapper>
